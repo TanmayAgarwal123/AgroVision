@@ -48,9 +48,6 @@ class ViewPagerAdapter(var context: Context) : PagerAdapter() {
         val slideTitleImage = view.findViewById<ImageView>(R.id.animation_view)
         val slideHeading = view.findViewById<TextView>(R.id.texttitle)
         val slideDescription = view.findViewById<TextView>(R.id.textdeccription)
-
-        // Set Lottie animation
-//        slideTitleImage.setImageResource(images[position])
         Glide
             .with(context)
             .load(images[position])

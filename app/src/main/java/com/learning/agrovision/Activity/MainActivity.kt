@@ -2,57 +2,40 @@ package com.learning.agrovision.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
-import android.widget.Toast
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.widget.Toolbar
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
-import com.google.android.material.navigation.NavigationView
-import com.learning.agrovision.Fragment.FertilizerFragment
-import com.learning.agrovision.HomeFragment
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import com.learning.agrovision.Fragment.CropPrediction
+import com.learning.agrovision.Fragment.Model
+import com.learning.agrovision.Fragment.PricePrediction
+import com.learning.agrovision.Fragment.YeildPridiction
 import com.learning.agrovision.R
+import com.learning.agrovision.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-    private lateinit var drawerLayout: DrawerLayout
+class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
+        binding= ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
-        val navigationView = findViewById<NavigationView>(R.id.nav_view)
-        navigationView.setNavigationItemSelectedListener(this)
-        val toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav)
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, FertilizerFragment()).commit()
-            navigationView.setCheckedItem(R.id.crop_prediction)
+        setContentView(binding.root)
+        replaceFragment(CropPrediction())
+
+//        binding.bottomNavigationView.background = null
+        binding.bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.crop_prediction -> replaceFragment(CropPrediction())
+                R.id.crop_yield_prediction -> replaceFragment(YeildPridiction())
+                R.id.crop_price_pridiction -> replaceFragment(PricePrediction())
+                R.id.Model -> replaceFragment(Model())
+            }
+            true
         }
     }
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.crop_prediction -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, HomeFragment()).commit()
-            R.id.crop_fertilizer -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, FertilizerFragment()).commit()
-//            R.id.nav_share -> supportFragmentManager.beginTransaction()
-//                .replace(R.id.fragment_container, ShareFragment()).commit()
-//            R.id.nav_about -> supportFragmentManager.beginTransaction()
-//                .replace(R.id.fragment_container, AboutFragment()).commit()
-            R.id.nav_logout -> Toast.makeText(this, "Logout!", Toast.LENGTH_SHORT).show()
-        }
-        drawerLayout.closeDrawer(GravityCompat.START)
-        return true
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentManager: FragmentManager = supportFragmentManager
+        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.container, fragment)
+        fragmentTransaction.commit()
     }
-    override fun onBackPressed() {
-        super.onBackPressed()
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            onBackPressedDispatcher.onBackPressed()
-        }
-    }
+
 }
