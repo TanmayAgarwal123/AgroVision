@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "142625658022",
+    "project_id": "agro-vision-e13ec",
+    "storage_bucket": "agro-vision-e13ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142625658022:android:31e3a9a9ab5448851c1067",
+        "android_client_info": {
+          "package_name": "com.learning.agrovision"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-1Oyhr8cj2jBQEXLhqfRi4ANf6Zbo6Fo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

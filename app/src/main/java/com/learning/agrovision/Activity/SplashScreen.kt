@@ -1,0 +1,19 @@
+package com.learning.agrovision.Activity
+
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.os.Handler
+import com.learning.agrovision.R
+
+class SplashScreen : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_splash_screen)
+
+        Handler().postDelayed({
+                startActivity(Intent(this, WalkThroughScreen::class.java))
+                finish()
+        },3000)
+    }
+}

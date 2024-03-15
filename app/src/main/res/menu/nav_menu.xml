@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn = "navigation_view">
+
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/crop_prediction"
+            android:icon="@drawable/crop_pridiction_icon"
+            android:title="Crop prediction "/>
+
+        <item
+            android:id="@+id/crop_yield_prediction"
+            android:icon="@drawable/crop_yield_pridiction_icon"
+            android:title="Crop yeild prediction"/>
+
+        <item
+            android:id="@+id/crop_price_pridiction"
+            android:icon="@drawable/crop_price_prediction_icon"
+            android:title="Crop price prediction"/>
+
+        <item
+            android:id="@+id/crop_fertilizer"
+            android:icon="@drawable/fertilizer_icon"
+            android:title="Fertilizer Recommendation"/>
+        <item
+            android:id="@+id/crop_pest_detection"
+            android:icon="@drawable/crop_pest_icon"
+            android:title="Crop Pest detection"/>
+
+
+    </group>
+    <item
+        android:title="General">
+
+        <menu>
+            <item
+                android:id="@+id/history"
+                android:icon="@drawable/history"
+                android:title="History"/>
+            <item
+                android:id="@+id/profile"
+                android:icon="@drawable/profile_icon"
+                android:title="Profile"/>
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/baseline_logout_24"
+                android:title="Logout"/>
+        </menu>
+
+    </item>
+
+</menu>
